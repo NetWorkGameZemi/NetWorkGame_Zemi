@@ -19,8 +19,6 @@ public class GameController : MonoBehaviour {
 
 	//移動速度
 	public float speed;
-	//ダッシュキー
-	public string dash;
 	public float dashspd;
 
 	[Range (100, 300)]
