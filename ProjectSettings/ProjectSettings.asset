@@ -578,11 +578,12 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    UNet: 1
   facebookSdkVersion: 7.9.1
   apiCompatibilityLevel: 2
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: c55e39a6-64b7-479e-80be-3404a4bb17fd
+  projectName: Team_NetWorkGame
+  organizationId: reiry
   cloudEnabled: 0
   enableNewInputSystem: 0
