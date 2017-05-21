@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class SimpleMatchMaker : MonoBehaviour
+public class MatchingManagerCustom : MonoBehaviour
 {
 	private const int
 	Menu = 0,Main = 1;
@@ -47,9 +47,9 @@ public class SimpleMatchMaker : MonoBehaviour
 		// マッチング設定のボタンに処理を割り当て
 		GameObject.Find ("SetupMatch").GetComponent<Button> ().onClick.AddListener (SetMatchMaker);
 		// ホスト設定ボタンに処理を割り当て
-		GameObject.Find("StartHost").GetComponent<Button>().onClick.AddListener(CreateMatch);
+		GameObject.Find("StartMatchHost").GetComponent<Button>().onClick.AddListener(CreateMatch);
 		// 参加ボタンに処理を割り当て
-		GameObject.Find("JoinGame").GetComponent<Button>().onClick.AddListener(FindMatch);
+		GameObject.Find("JoinMatchGame").GetComponent<Button>().onClick.AddListener(FindMatch);
 	}
 	// メインシーンのセットアップ
 	void MainSceneSetup(){

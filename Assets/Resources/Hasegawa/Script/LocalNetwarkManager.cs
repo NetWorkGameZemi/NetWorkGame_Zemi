@@ -5,7 +5,8 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class NetworkManagerCustom : NetworkManager {
+public class LocalNetwarkManager : MonoBehaviour {
+
 
 	bool onLoaded = false;
 
@@ -67,7 +68,7 @@ public class NetworkManagerCustom : NetworkManager {
 		// RemoveListener: Buttonイベントを削除する
 		// AddListener	 : ボタンのベントを登録する
 		GameObject.Find ("StartLocalHost").GetComponent<Button> ().onClick.RemoveAllListeners ();
-		GameObject.Find ("StartLovalHost").GetComponent<Button> ().onClick.AddListener (StartupHost);
+		GameObject.Find ("StartLocalHost").GetComponent<Button> ().onClick.AddListener (StartupHost);
 
 		GameObject.Find ("JoinLocalGame").GetComponent<Button> ().onClick.RemoveAllListeners ();
 		GameObject.Find ("JoinLocalGame").GetComponent<Button> ().onClick.AddListener (JoinGame);
@@ -75,7 +76,8 @@ public class NetworkManagerCustom : NetworkManager {
 
 	void SetupOtherSceneButton(){
 		// DisconnectボタンにStopHostメソッドを登録する
-		GameObject.Find ("Disconnect").GetComponent<Button> ().onClick.RemoveAllListeners ();
-		GameObject.Find ("Disconnect").GetComponent<Button> ().onClick.AddListener (NetworkManager.singleton.StopHost);
+		//GameObject.Find ("Disconnect").GetComponent<Button> ().onClick.RemoveAllListeners ();
+		//GameObject.Find ("Disconnect").GetComponent<Button> ().onClick.AddListener (NetworkManager.singleton.StopHost);
 	}
+
 }
