@@ -20,6 +20,8 @@ public class Rotation : MonoBehaviour {
 	const int STOP =4;
 	int rot_dirc;//true=時計回り,false=反時計回り
 
+	bool doOnce = false;
+
 	Vector3 rot_root=new Vector3(0,0,0);
 
 	Move MV;
@@ -32,30 +34,36 @@ public class Rotation : MonoBehaviour {
 	}
 	void Update(){
 		if (Input.GetKey (left)) {
-			rot_vctl [LEFT] = true;
+			Rot_temple (LEFT, true);
 		} else {
-			rot_vctl [LEFT] = false;
+			Rot_temple (LEFT, false);
 		}
 		//右
 		if (Input.GetKey (right)) {
-			rot_vctl[RIGHT] = true;
+			Rot_temple (RIGHT, true);
 		} else {
-			rot_vctl [RIGHT] = false;
+			Rot_temple (RIGHT, false);
 		}
 		//上
 		if (Input.GetKey (up)) {
-			rot_vctl[UP] = true;
+			Rot_temple (UP, true);
 		} else {
-			rot_vctl [UP] = false;
+			Rot_temple (UP, false);
 		}
 		//下
 		if (Input.GetKey (down)) {
-			rot_vctl[DOWN] = true;
+			Rot_temple (DOWN, true);
 		} else {
-			rot_vctl [DOWN] = false;
+			Rot_temple (DOWN, false);
 		}
 		Rot ();
 	}
+
+	void Rot_temple(int vctl,bool flg){
+		rot_vctl [vctl] =flg;
+//		aa ();
+	}
+		
 	void Rot(){
 		if (rot_vctl [UP] == true) {
 			rot_root = new Vector3 (0, 0, 0);
@@ -87,21 +95,39 @@ public class Rotation : MonoBehaviour {
 		switch(rot_dirc){
 		case LEFT:
 			this.transform.Rotate (0f, -10f, 0f);
+			//Debug.Log ("-10");
 			break;
 		case RIGHT:
 			this.transform.Rotate (0f, 10f, 0f);
+			//Debug.Log ("10");
 			break;
 		default:
 			break;
 		}
+		//Debug.Log (transform.rotation.eulerAngles);
 	}
 	void aa(){
-		Debug.Log ("A : " + (this.transform.rotation.eulerAngles.y - rot_root.y) + " B : " + ((360 - this.transform.rotation.eulerAngles.y) + rot_root.y));
-		if ( this.transform.rotation.eulerAngles.y - rot_root.y > (360 - this.transform.rotation.eulerAngles.y) + rot_root.y ){
-			rot_dirc = RIGHT;
+		bool back=false;
+
+		float Akaku=this.transform.rotation.eulerAngles.y - rot_root.y;
+		if (Akaku <= 0) {
+			back = true;
+			Akaku*=-1;
+		}
+		float Bkaku=360 - Akaku;
+		Debug.Log (Bkaku + ":" + Akaku + ":" + rot_root.y + ":" + transform.rotation.eulerAngles.y);
+		if ( Akaku > Bkaku){
+			if (back == true) {
+				rot_dirc = LEFT;
+			} else {
+				rot_dirc = RIGHT;
+			}
 		}else{
-			//		if (this.transform.rotation.eulerAngles.y - rot_root.y<180) {
-			rot_dirc = LEFT;
+			if (back == true) {
+				rot_dirc = RIGHT;
+			} else {
+				rot_dirc = LEFT;
+			}
 		}
 		if (10 > this.transform.rotation.eulerAngles.y - rot_root.y && this.transform.rotation.eulerAngles.y - rot_root.y > -10) {
 			rot_dirc=STOP;
